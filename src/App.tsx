@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 import Homepage from "./pages/Homepage"
 import Account from "./pages/Account"
+import Navbar from "./components/Navbar";
 
 const linkPage = [
   {path: '/', component: <Homepage />},
-  // can we use component instead of children
   {path: '/account/:id', component: <Account />},
 ]
 
@@ -14,7 +14,7 @@ function App() {
   return (
     <Box>
       <Router>
-        {/* Searchbar or Navbar e.g <Navbar NAV_ITEMS={NAV_ITEMS} /> */}
+        <Navbar />
         <br />
         <Switch>
           {linkPage.map((obj) => {

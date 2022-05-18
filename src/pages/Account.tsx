@@ -10,7 +10,6 @@ export default function Account() {
   const { id } = useParams() as {[key: string]: string}
   return (
     <Box>
-      {/* <Search /> */}
       <Heading>Account: {id}</Heading>
       <DataTable id={id} />
     </Box>
@@ -97,7 +96,7 @@ function DataTable({id}: {id:string}) {
     ? (
       <>
         <Table columns={columns} data={rData} />
-        <Button onClick={() => loadMore()}>Load more</Button>
+        <Button onClick={() => loadMore()} backgroundColor="yellow.400">Load more</Button>
       </>
     )
     : loading 

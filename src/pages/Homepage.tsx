@@ -4,12 +4,10 @@ import { linkAccount, linkEvent, linkToken, PAGINATION_PART_OF_QUERY, TransferDa
 import Table from "../components/Table";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
-import { useState } from "react";
 
 export default function Homepage() {
   return (
     <Box>
-      {/* <Search /> */}
       <Heading>All</Heading>
       <DataTable />
     </Box>
@@ -69,19 +67,19 @@ function DataTable() {
   console.log(rData)
 
   const loadMore = () => {
-    console.log(data.query.transfers.pageInfo.endCursor)
+    //console.log(data.query.transfers.pageInfo.endCursor)
     fetchMore({
       variables: {after: data.query.transfers.pageInfo.endCursor}
     })
-    console.log("loaded more")
+    //console.log("loaded more")
   }
 
   return (
-    rData 
+    data 
     ? (
       <>
         <Table columns={columns} data={rData} />
-        <Button onClick={() => loadMore()}>Load more</Button>
+        <Button onClick={() => loadMore()} backgroundColor="yellow.400">Load more</Button>
       </>
     )
     : loading 
