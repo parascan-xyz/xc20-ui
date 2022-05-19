@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { Box, Button, Heading } from "@chakra-ui/react";
-import { linkAccount, linkEvent, linkToken, PAGINATION_PART_OF_QUERY, TransferData } from "../utils";
+import { linkAccount, linkEvent, linkToken, PAGINATION_PART_OF_QUERY, timeSince, TransferData } from "../utils";
 import Table from "../components/Table";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
@@ -26,11 +26,12 @@ function DataTable() {
             blockNumber
             extrinsicIndex
             eventIndex
+            timestamp
             fromId
             toId
             tokenId
             value
-            token {id, name, symbol, decimals}
+            token {id, address, name, symbol, decimals}
           }
         }
       }
@@ -46,6 +47,7 @@ function DataTable() {
 
   const columns = [
     { Header: "Event", accessor: "event" },
+    { Header: "Age", accessor: "age" },
     { Header: "From", accessor: "from" },
     { Header: "To", accessor: "to" },
     { Header: "Token", accessor: "token" },
@@ -58,6 +60,7 @@ function DataTable() {
     data.query.transfers.nodes.map(
       (d: TransferData) => ({
         event: linkEvent(d.blockNumber, d.extrinsicIndex, d.eventIndex),
+        age: timeSince(d.timestamp),
         from: linkAccount(d.fromId),
         to: linkAccount(d.toId),
         token: linkToken(d.token.id, d.token.symbol),
@@ -79,7 +82,9 @@ function DataTable() {
     ? (
       <>
         <Table columns={columns} data={rData} />
-        <Button onClick={() => loadMore()} backgroundColor="yellow.400">Load more</Button>
+        {data.query.transfers.pageInfo.hasNextPage 
+          && <Button onClick={() => loadMore()} backgroundColor="yellow.400" w="50%" ml="25%">Load more</Button>
+        }
       </>
     )
     : loading 
