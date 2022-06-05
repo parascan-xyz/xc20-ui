@@ -33,7 +33,7 @@ export interface BalanceData {
   apiValue: bigint
 }
 
-export const ENDPOINT = "https://api.subquery.network/sq/parascan-xyz/xc20-subql"
+export const ENDPOINT = "https://api.subquery.network/sq/parascan-xyz/xc20-moonbeam"
 
 export const CACHE = new InMemoryCache({
   typePolicies: {
