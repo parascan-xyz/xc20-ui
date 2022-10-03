@@ -4,6 +4,7 @@ import { Box } from "@chakra-ui/react";
 import Homepage from "./pages/Homepage"
 import Account from "./pages/Account"
 import Navbar from "./components/Navbar";
+import Terminate from "./components/Terminate"
 
 const linkPage = [
   {path: '/', component: <Homepage />},
@@ -15,6 +16,7 @@ function App() {
     <Box>
       <Router>
         <Navbar />
+        <Terminate />
         <br />
         <Switch>
           {linkPage.map((obj) => {
