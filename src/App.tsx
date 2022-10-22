@@ -11,25 +11,33 @@ const linkPage = [
   {path: '/account/:id', component: <Account />},
 ]
 
+// function App() {
+//   return (
+//     <Box>
+//       <Router>
+//         <Navbar />
+//         <Terminate />
+//         <br />
+//         <Switch>
+//           {linkPage.map((obj) => {
+//             return (
+//               <Route exact path={obj.path} key={obj.path}>
+//                 {obj.component}
+//               </Route>
+//             );
+//           })}
+//         </Switch>
+//       </Router>
+//     </Box>
+//   );
+// }
+
 function App() {
   return (
     <Box>
-      <Router>
-        <Navbar />
-        <Terminate />
-        <br />
-        <Switch>
-          {linkPage.map((obj) => {
-            return (
-              <Route exact path={obj.path} key={obj.path}>
-                {obj.component}
-              </Route>
-            );
-          })}
-        </Switch>
-      </Router>
+      <Terminate />
     </Box>
-  );
+  )
 }
 
 export default App;
